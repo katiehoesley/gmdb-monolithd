@@ -1,20 +1,18 @@
-
 version: 0.2
 
-  phases:
-    install:
-      runtime-versions:
-        java: openjdk8
-    build:
-      commands:
-        - echo Build started on `date`
-        - java -version
-        - gradlew build
-    post_build:
-      commands:
-        - echo Build complete on `date`
-        - echo creating the docker image
-        - docker build -t gmdb/monolith:0.1 .
-    artifacts:
-      files:
-        - build/libs/gmdb-monolith-0.0.1-SNAPSHOT.jar
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+  build:
+    commands:
+      - java -version
+      - ./gradlew build
+  post_build:
+    commands:
+      - echo Build complete on `date`
+      - echo creating the docker image
+      - docker build -t gmdb/monolith:0.1 .
+artifacts:
+  files:
+    - build/libs/gmdb-monolith-0.0.1-SNAPSHOT.jar
