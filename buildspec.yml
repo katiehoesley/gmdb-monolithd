@@ -11,13 +11,12 @@ phases:
       - ./gradlew build
       - echo Building docker image...
       - docker build -t gmdb/monolith:0.1 .
-      - docker tag gmdb/monolith:0.1 159757098416.dkr.ecr.us-west-1.amazonaws.com/gmdb/monolith
+      - docker tag gmdb/monolith:latest 159757098416.dkr.ecr.us-west-1.amazonaws.com/gmdb/monolith:0.1
   post_build:
     commands:
       - echo Build complete on `date`
       - echo Pushing the Docker image...
-      - docker push
-      - docker push 159757098416.dkr.ecr.us-west-1.amazonaws.com/gmdb/monolith/gmdb/monolith:0.1
+      - docker push 159757098416.dkr.ecr.us-west-1.amazonaws.com/gmdb/monolith:latest:0.1
 artifacts:
   files:
     - build/libs/gmdb-mono.lith-0.0.1-SNAPSHOT.jar
