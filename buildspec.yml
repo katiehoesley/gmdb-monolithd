@@ -4,6 +4,10 @@ phases:
   install:
     runtime-versions:
       java: openjdk8
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region us-west-1)
   build:
     commands:
       - java -version
